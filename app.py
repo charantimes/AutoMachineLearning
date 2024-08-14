@@ -108,7 +108,7 @@ if choice == "Modelling":
 
   
 
-  if task_type == "Classification":
+  if task_type == "Classification" and df is not None:
     chosen_target = st.selectbox('Choose the Target Column (Classification)', df.columns)
     if st.button('Run Modelling'):
       classification_setup(df, target=chosen_target)  # Specify classification task_type
@@ -119,7 +119,7 @@ if choice == "Modelling":
       st.dataframe(compare_df)
       class_save_model(best_model, 'best_model')
 
-  else:
+  elif task_type== "Regression" and df is not None:
     chosen_target = st.selectbox('Choose the Target Column (Regression)', df.columns)
     if st.button('Run Modelling'):
       regression_setup(df, target=chosen_target)  # Use regression_setup for regression
@@ -129,6 +129,8 @@ if choice == "Modelling":
       compare_df = regression_pull()
       st.dataframe(compare_df)
       regression_save_model(best_model, 'best_model')
+  else:
+     st.error("dataframe is not loaded")
 
 
 
