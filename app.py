@@ -21,7 +21,7 @@ with st.sidebar:
     st.image("download.jpeg")
     st.title("AutoCharanML")
     choice = st.radio("Navigation", ["Upload","Profiling","Cleaning","Modelling", "Download"])
-    st.info("Welcome to AutoCharanML, the ultimate platform for discovering the best AutoML algorithms. Our site streamlines the process of evaluating and comparing AutoML solutions, giving you the insights needed to choose the most effective tool for your needs. With our intuitive benchmarks and expert guidance, finding the ideal AutoML algorithm has never been easier. Start optimizing your machine learning workflows with AlgoVista today!")
+    st.info("Welcome to AutoCharanML, the ultimate platform for discovering the best AutoML algorithms. Our site streamlines the process of evaluating and comparing AutoML solutions, giving you the insights needed to choose the most effective tool for your needs. With our intuitive benchmarks and expert guidance, finding the ideal AutoML algorithm has never been easier. Start optimizing your machine learning workflows with Autocharanml today!")
 
 if choice == "Upload":
     st.title("Upload Your Dataset")
