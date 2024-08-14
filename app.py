@@ -8,7 +8,7 @@ import pandas as pd
 #from streamlit_pandas_profiling import st_profile_report
 from sklearn.preprocessing import LabelEncoder
 import os 
-from pycaret.classification import setup, compare_models, pull, save_model, load_model  # Import for classification
+from pycaret.classification import setup as classification_setup, compare_models as classifiaction_compare_models, pull as classification_pull, save_model as class_save_model, load_model  # Import for classification
 from pycaret.regression import setup as regression_setup, compare_models as regression_compare_models, pull as regression_pull, save_model as regression_save_model, load_model as regression_load_model 
 
 def encode_columns(df, enselect):
@@ -110,13 +110,13 @@ if choice == "Modelling":
   if task_type == "Classification":
     chosen_target = st.selectbox('Choose the Target Column (Classification)', df.columns)
     if st.button('Run Modelling'):
-      setup(df, target=chosen_target, task_type="classification")  # Specify classification task_type
-      setup_df = pull()
+      classification_setup(df, target=chosen_target)  # Specify classification task_type
+      setup_df = classification_pull()
       st.dataframe(setup_df)
-      best_model = compare_models()
-      compare_df = pull()
+      best_model =classifiaction_compare_models()
+      compare_df = classification_pull()
       st.dataframe(compare_df)
-      save_model(best_model, 'best_model')
+      class_save_model(best_model, 'best_model')
 
   else:
     chosen_target = st.selectbox('Choose the Target Column (Regression)', df.columns)
