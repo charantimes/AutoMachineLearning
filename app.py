@@ -5,6 +5,7 @@ from pycaret.regression import setup, compare_models, pull, save_model, load_mod
 #import pandas_profiling
 from ydata_profiling import ProfileReport
 import pandas as pd
+from streamlit.components.v1 import html
 #from streamlit_pandas_profiling import st_profile_report
 from sklearn.preprocessing import LabelEncoder
 import os 
@@ -48,7 +49,17 @@ if os.path.exists('./dataset.csv'):
 if choice == "Profiling":
     st.title("Upload Your Dataset")
     profile = ProfileReport(df, title='Pandas Profiling Report')
-    st.markdown(profile.to_html(), unsafe_allow_html=True)
+    html(profile.to_html(), height=800, scrolling=True)
+    # Export the profile report to HTML
+    profile_html = profile.to_html()
+
+    # Provide a download button for the report
+    st.download_button(
+        label="Download Profiling Report as HTML",
+        data=profile_html,
+        file_name='profiling_report.html',
+        mime='text/html'
+    )
 
 if choice == "Cleaning":
     st.title('Cleaning Categorical Data')
