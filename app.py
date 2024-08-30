@@ -25,9 +25,9 @@ with st.sidebar:
     st.info("Welcome to AutoCharanML, the ultimate platform for discovering the best AutoML algorithms. Our site streamlines the process of evaluating and comparing AutoML solutions, giving you the insights needed to choose the most effective tool for your needs. With our intuitive benchmarks and expert guidance, finding the ideal AutoML algorithm has never been easier. Start optimizing your machine learning workflows with Autocharanml today!")
 
 if choice == "Upload":
-    st.title("Upload Your Dataset")
-    st.write('Upload your datasets in csv format')
-    file = st.file_uploader("Upload Your Dataset")
+    st.title("Welcome to our AutoCML platform!")
+    st.write('Start by uploading your dataset, then profile it for insights. Easily clean data by dropping columns and handling encoding. Our system identifies the best machine learning model for you. Finally, download a detailed report. Simplify your machine learning workflow with our user-friendly solution!')
+    file = st.file_uploader("Upload Your Dataset In Csv Format")
     if file: 
         df = pd.read_csv(file, index_col=None)
         df.to_csv('dataset.csv', index=None)
@@ -47,9 +47,8 @@ if os.path.exists('./dataset.csv'):
 
 
 if choice == "Profiling":
-    st.title("Upload Your Dataset")
     profile = ProfileReport(df, title='Pandas Profiling Report')
-    html(profile.to_html(), height=800, scrolling=True)
+    html(profile.to_html(), height=1000, scrolling=True)
     # Export the profile report to HTML
     profile_html = profile.to_html()
 
