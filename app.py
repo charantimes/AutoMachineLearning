@@ -12,6 +12,10 @@ import os
 from pycaret.classification import setup as classification_setup, compare_models as classifiaction_compare_models, pull as classification_pull, save_model as class_save_model, load_model  # Import for classification
 from pycaret.regression import setup as regression_setup, compare_models as regression_compare_models, pull as regression_pull, save_model as regression_save_model, load_model as regression_load_model 
 
+# change start
+if 'df' not in st.session_state:
+    st.session_state['df']=None
+
 def encode_columns(df, enselect):
   for col in enselect:
     df[col] = LabelEncoder().fit_transform(df[col])
@@ -32,9 +36,8 @@ if choice == "Upload":
         df = pd.read_csv(file, index_col=None)
         df.to_csv('dataset.csv', index=None)
         st.dataframe(df)
-# change start
-if 'df' not in st.session_state:
-    st.session_state['df']=None
+        st.session_state['df']=df
+
 
 #def set_data(current_df):
     #global df
